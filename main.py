@@ -2,9 +2,10 @@ from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from cocktail import *
 
-
 app = Flask(__name__)
 Bootstrap(app)
+
+cocktails_dict = get_all_cocktails()
 
 
 # all Flask routes below
@@ -38,5 +39,4 @@ def get_random():
 
 
 if __name__ == '__main__':
-    cocktails_dict = get_all_cocktails()
     app.run()
