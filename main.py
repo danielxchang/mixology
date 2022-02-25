@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
-from cocktail_api import *
+from cocktail import *
 
 
 app = Flask(__name__)
