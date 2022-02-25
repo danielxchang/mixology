@@ -16,7 +16,7 @@ def home():
 
 @app.route('/cocktails', defaults={'letter': 'a'})
 @app.route('/cocktails/<letter>')
-def cocktails(letter):
+def all_cocktails(letter):
     return render_template('cocktails.html', letter=letter, cocktails=cocktails_dict)
 
 
