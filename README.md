@@ -1,4 +1,4 @@
 # Mixology & Me
-A cocktail application that presents a collection of cocktails or provides a random cocktail suggestion to the user.
+<p>A cocktail application that presents the user with a collection of cocktails or provides a random cocktail suggestion.</p>
 
-<a>https://www.thecocktaildb.com/api/json/v1/1/</a>
+<p> Cocktail data retrieved from TheCocktailDB API (<a>https://www.thecocktaildb.com/api.php</a>).</p>
