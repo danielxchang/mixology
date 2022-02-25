@@ -1,0 +1,45 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}{{ cocktail['strDrink'] }}{% endblock %}
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+{% block content %}
+    <div class="container" id="cocktail-image-container">
+        <a class="btn btn-warning btn-md" id="cocktail-home-btn" href="{{ url_for('home') }}" role="button">Return to home page</a>
+        <h1>{{ cocktail['strDrink'] }}</h1>
+
+        <img id="cocktail-image" src="{{ cocktail['strDrinkThumb'] }}">
+      <table class="table" id="cocktail-table">
+          <tbody>
+            {% for column, key in column_dict_key_pairs: %}
+                {% if column == "Ingredients": %}
+                    <tr>
+                        <th scope="row">{{ column }}</th>
+                        <td>
+                        {% for i in range(1, 16): %}
+                            {% if cocktail[key + str(i)]: %}
+                                {% if not cocktail[key + str(i + 1)] or i == 15: %}
+                                    {{ cocktail[key + str(i)] }}
+                                {% else: %}
+                                    {{ cocktail[key + str(i)] }}
+                                    <br>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <th scope="row">{{ column }}</th>
+                        <td>{{ cocktail[key] }}</td>
+                    </tr>
+                {% endif %}
+
+            {% endfor %}
+          </tbody>
+      </table>
+    </div>
+
+{% endblock %}

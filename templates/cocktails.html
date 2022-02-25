@@ -1,0 +1,58 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Cocktails{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <ul id="alphabet-picker" class="pagination justify-content-center">
+          {% for letter_key in cocktails.keys(): %}
+            {% if not cocktails[letter_key]: %}
+            <li class="page-item disabled"><a class="page-link" href="{{ url_for('cocktails') }}">{{ letter_key.upper() }}</a></li>
+            {% elif letter_key == letter %}
+            <li class="page-item active"><a class="page-link" href="{{ url_for('cocktails', letter=letter_key) }}">{{ letter_key.upper() }}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('cocktails', letter=letter_key) }}">{{ letter_key.upper() }}</a></li>
+            {% endif %}
+          {% endfor %}
+      </ul>
+
+      <h1 id="all-heading"><a href="{{ url_for('home') }}">All Cocktails</a></h1>
+
+	  <table class="table">
+          <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Image</th>
+                <th scope="col">Alcoholic?</th>
+                <th scope="col">Glass Type</th>
+                <th scope="col">Instructions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cocktail in cocktails[letter]: %}
+            <tr>
+                <th scope="row"><a href="{{ url_for('show_cocktail', cocktail_id=cocktail['idDrink']) }}" target="_blank">{{ cocktail['strDrink'] }}</a></th>
+                <td><img src="{{ cocktail['strDrinkThumb'] }}" height="300" width="350"></td>
+                <td>{{ cocktail['strAlcoholic'] }}</td>
+                <td>{{ cocktail['strGlass'] }}</td>
+                <td>{{ cocktail['strInstructions'] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+  	  </table>
+
+      <p><a id="cocktails-btn" class="btn btn-warning btn-md" href="{{ url_for('home') }}" role="button">Return to home page</a></p>
+      <br>
+  </div>
+</div>
+
+{% endblock %}
