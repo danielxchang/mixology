@@ -16,11 +16,11 @@
       <ul id="alphabet-picker" class="pagination justify-content-center">
           {% for letter_key in cocktails.keys(): %}
             {% if not cocktails[letter_key]: %}
-            <li class="page-item disabled"><a class="page-link" href="{{ url_for('cocktails') }}">{{ letter_key.upper() }}</a></li>
+            <li class="page-item disabled"><a class="page-link" href="{{ url_for('all_cocktails') }}">{{ letter_key.upper() }}</a></li>
             {% elif letter_key == letter %}
-            <li class="page-item active"><a class="page-link" href="{{ url_for('cocktails', letter=letter_key) }}">{{ letter_key.upper() }}</a></li>
+            <li class="page-item active"><a class="page-link" href="{{ url_for('all_cocktails', letter=letter_key) }}">{{ letter_key.upper() }}</a></li>
             {% else %}
-            <li class="page-item"><a class="page-link" href="{{ url_for('cocktails', letter=letter_key) }}">{{ letter_key.upper() }}</a></li>
+            <li class="page-item"><a class="page-link" href="{{ url_for('all_cocktails', letter=letter_key) }}">{{ letter_key.upper() }}</a></li>
             {% endif %}
           {% endfor %}
       </ul>
